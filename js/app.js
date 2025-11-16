@@ -1,15 +1,24 @@
+// js/app.js
+
 mapboxgl.accessToken = window.MAPBOX_TOKEN || '';
+
+// Farklı taban haritalar (istediğin gibi değiştirebilirsin)
+const BASEMAP_STYLES = {
+  current: 'mapbox://styles/mapbox/standard',
+  // Bunu sen ister özel stil, ister satellite vs. ile 2020 olarak yorumlarsın
+  old2020: 'mapbox://styles/mapbox/satellite-streets-v12'
+};
 
 const IZMIR_CENTER = { lng: 27.1428, lat: 38.4237 };
 
 // Ortak map ayarları
 const baseMapOptions = {
-  style: 'mapbox://styles/mapbox/standard',
   center: IZMIR_CENTER,
   zoom: 16.5,
   pitch: 60,
   bearing: -20,
   antialias: true,
+  style: BASEMAP_STYLES.current,
   config: {
     basemap: {
       theme: 'monochrome',
@@ -18,15 +27,17 @@ const baseMapOptions = {
   }
 };
 
-// Solda eski bina sahnesi
+// Solda eski bina sahnesi (default: 2020)
 const mapOld = new mapboxgl.Map({
   ...baseMapOptions,
+  style: BASEMAP_STYLES.old2020,
   container: 'map-old'
 });
 
-// Sağda yeni bina sahnesi
+// Sağda yeni bina sahnesi (default: güncel)
 const mapNew = new mapboxgl.Map({
   ...baseMapOptions,
+  style: BASEMAP_STYLES.current,
   container: 'map-new'
 });
 
@@ -34,60 +45,35 @@ const mapNew = new mapboxgl.Map({
 const compare = new mapboxgl.Compare(mapOld, mapNew, '#comparison-container', {});
 
 // Threebox referansları
-let tbOld;
-let tbNew;
+let tbOld = null;
+let tbNew = null;
 
 const buildingModelsOld = {};
 const buildingModelsNew = {};
 
-// Parsel katmanlarını ekleyen ortak fonksiyon
-function addParcelsLayers(map, idSuffix) {
-  const sourceId = `parcels-src-${idSuffix}`;
-  const fillId = `parcels-fill-${idSuffix}`;
-  const lineId = `parcels-outline-${idSuffix}`;
+// Görünürlük durumlarını global tutalım
+let objectsVisible = true;
+let parcelsVisible = true;
 
-  if (map.getSource(sourceId)) return; // tekrar eklemeye çalışma
-
-  map.addSource(sourceId, {
-    type: 'geojson',
-    data: './data/parseller.geojson'
-  });
-
-  // Dolu poligon (alan)
-  map.addLayer({
-    id: fillId,
-    type: 'fill',
-    source: sourceId,
-    paint: {
-      'fill-color': '#ff0000',
-      'fill-opacity': 0.25
-    }
-  });
-
-  // Kenar çizgisi
-  map.addLayer({
-    id: lineId,
-    type: 'line',
-    source: sourceId,
-    paint: {
-      'line-color': '#ffcc66',
-      'line-width': 2
-    }
-  });
-}
-
-
-// Eski sahne
+// ─────────────────────────────────────────────
+// Hata logları
+// ─────────────────────────────────────────────
 mapOld.on('error', (e) => console.error('Mapbox error (old):', e));
 mapNew.on('error', (e) => console.error('Mapbox error (new):', e));
 
-mapOld.on('style.load', () => {
-  console.log('Old style loaded');
-  tbOld = new Threebox(mapOld, mapOld.getCanvas().getContext('webgl'), {
-    defaultLights: true
-  });
+// ─────────────────────────────────────────────
+// 3D bina katmanlarını fonksiyonlaştır (toggle için lazım)
+// ─────────────────────────────────────────────
+function add3DBuildingsOldLayer() {
+  if (!objectsVisible) return; // görünür değilse hiç ekleme
+  if (!tbOld) {
+    tbOld = new Threebox(mapOld, mapOld.getCanvas().getContext('webgl'), {
+      defaultLights: true
+    });
+  }
 
-  // Eski binalar
+  if (mapOld.getLayer('3d-buildings-old')) return;
+
   mapOld.addLayer({
     id: '3d-buildings-old',
     type: 'custom',
@@ -96,6 +82,8 @@ mapOld.on('style.load', () => {
     onAdd: function () {
       console.log('3D eski binalar yükleniyor:', BUILDINGS);
       BUILDINGS.forEach((b) => {
+        if (!b.glbOld) return;
+
         const options = {
           obj: b.glbOld,
           type: 'gltf',
@@ -105,6 +93,7 @@ mapOld.on('style.load', () => {
         };
 
         tbOld.loadObj(options, (model) => {
+          if (!model) return;
           model.setCoords(b.coords);
           model.setRotation({ x: 0, y: 0, z: 0 });
           buildingModelsOld[b.id] = model;
@@ -115,25 +104,23 @@ mapOld.on('style.load', () => {
     },
 
     render: function () {
-      tbOld.update();
+      if (objectsVisible && tbOld) {
+        tbOld.update();
+      }
     }
   });
+}
 
-    // Parseller (eski sahnede de göster)
-  addParcelsLayers(mapOld, 'old');
-});
+function add3DBuildingsNewLayer() {
+  if (!objectsVisible) return;
+  if (!tbNew) {
+    tbNew = new Threebox(mapNew, mapNew.getCanvas().getContext('webgl'), {
+      defaultLights: true
+    });
+  }
 
-// Yeni sahne + atık animasyonu + UI
-mapNew.on('style.load', () => {
-  console.log('New style loaded');
-  tbNew = new Threebox(mapNew, mapNew.getCanvas().getContext('webgl'), {
-    defaultLights: true
-  });
+  if (mapNew.getLayer('3d-buildings-new')) return;
 
-  // Atık animasyonu yeni sahne üzerinde çalışacak
-  WasteAnimation.setThreeboxRefs(tbNew, mapNew);
-
-  // Yeni binalar
   mapNew.addLayer({
     id: '3d-buildings-new',
     type: 'custom',
@@ -142,6 +129,8 @@ mapNew.on('style.load', () => {
     onAdd: function () {
       console.log('3D yeni binalar yükleniyor:', BUILDINGS);
       BUILDINGS.forEach((b) => {
+        if (!b.glbNew) return;
+
         const options = {
           obj: b.glbNew,
           type: 'gltf',
@@ -151,6 +140,7 @@ mapNew.on('style.load', () => {
         };
 
         tbNew.loadObj(options, (model) => {
+          if (!model) return;
           model.setCoords(b.coords);
           model.setRotation({ x: 0, y: 0, z: 0 });
           buildingModelsNew[b.id] = model;
@@ -161,48 +151,259 @@ mapNew.on('style.load', () => {
     },
 
     render: function () {
-      tbNew.update();
+      if (objectsVisible && tbNew) {
+        tbNew.update();
+      }
     }
   });
+}
 
-    // Parseller (yeni sahnede de göster)
-  addParcelsLayers(mapNew, 'new');
+// ─────────────────────────────────────────────
+// Eski sahne: 3D eski binalar + parseller
+// ─────────────────────────────────────────────
+mapOld.on('style.load', () => {
+  console.log('Old style loaded');
+  add3DBuildingsOldLayer();
+  addParcelsLayer(mapOld, 'parcels-src-old', 'parcels-layer-old');
+});
 
+// ─────────────────────────────────────────────
+// Yeni sahne: 3D yeni binalar + atık animasyonu + parseller + UI
+// ─────────────────────────────────────────────
+mapNew.on('style.load', () => {
+  console.log('New style loaded');
+
+  add3DBuildingsNewLayer();
+  addParcelsLayer(mapNew, 'parcels-src-new', 'parcels-layer-new');
+
+  // Atık animasyonu yeni sahne üzerinde çalışacak
+  if (window.WasteAnimation && typeof WasteAnimation.setThreeboxRefs === 'function') {
+    WasteAnimation.setThreeboxRefs(tbNew, mapNew);
+  }
 
   // Atık sahaları + UI sadece yeni map üzerinde
   console.log('Atık sahaları GeoJSON’dan okunacak (new map)...');
-  DataStore.loadWasteSitesFromGeoJSON().then(() => {
-    console.log('Atık sahaları hazır:', WASTE_SITES);
 
-    mapNew.addSource('waste-sites-src', {
-      type: 'geojson',
-      data: './data/waste_sites.geojson'
-    });
+  const loadWasteSitesPromise =
+    window.DataStore && typeof DataStore.loadWasteSitesFromGeoJSON === 'function'
+      ? DataStore.loadWasteSitesFromGeoJSON()
+      : fetch('./data/waste_sites.geojson')
+          .then((r) => r.json())
+          .then((geo) => {
+            window.WASTE_SITES = (geo.features || []).map((f, idx) => ({
+              id: f.properties?.id || `W${idx + 1}`,
+              name: f.properties?.name || `Atık Sahası ${idx + 1}`,
+              coords: f.geometry?.coordinates || [0, 0]
+            }));
+          });
 
-    mapNew.addLayer({
-      id: 'waste-sites-layer',
-      type: 'circle',
-      source: 'waste-sites-src',
-      paint: {
-        'circle-radius': 6,
-        'circle-color': '#00ff88',
-        'circle-opacity': 0.9,
-        'circle-stroke-width': 1.5,
-        'circle-stroke-color': '#003322'
+  loadWasteSitesPromise
+    .then(() => {
+      console.log('Atık sahaları hazır:', window.WASTE_SITES);
+
+      if (!mapNew.getSource('waste-sites-src')) {
+        mapNew.addSource('waste-sites-src', {
+          type: 'geojson',
+          data: './data/waste_sites.geojson'
+        });
+
+        mapNew.addLayer({
+          id: 'waste-sites-layer',
+          type: 'circle',
+          source: 'waste-sites-src',
+          paint: {
+            'circle-radius': 6,
+            'circle-color': '#00ff88',
+            'circle-opacity': 0.9,
+            'circle-stroke-width': 1.5,
+            'circle-stroke-color': '#003322'
+          }
+        });
       }
+
+      initUI();
+
+      if (window.BuildingFilters && typeof BuildingFilters.init === 'function') {
+        BuildingFilters.init(mapNew);
+      }
+
+      if (window.BuildingImages && typeof BuildingImages.init === 'function') {
+        BuildingImages.init(mapOld, mapNew);
+      }
+
+      initNorthIndicator(mapNew);
+      initBasemapAndLayerToggles(); // taban harita + obje/parsel butonları
+    })
+    .catch((err) => {
+      console.error('Atık sahaları yüklenirken hata:', err);
+      initUI();
+      if (window.BuildingFilters && typeof BuildingFilters.init === 'function') {
+        BuildingFilters.init(mapNew);
+      }
+      if (window.BuildingImages && typeof BuildingImages.init === 'function') {
+        BuildingImages.init(mapOld, mapNew);
+      }
+      initNorthIndicator(mapNew);
+      initBasemapAndLayerToggles();
     });
+});
 
-    // UI'yi başlat (panel, timeline)
-    initUI();
-  });
-
-      // Bina tip filtreleri (sadece yeni sahnede)
-  if (window.BuildingFilters && typeof window.BuildingFilters.init === 'function') {
-    BuildingFilters.init(mapNew);
+// ─────────────────────────────────────────────
+// Parsel katmanı (her iki haritada da kullanılan fonksiyon)
+// ─────────────────────────────────────────────
+function addParcelsLayer(map, sourceId, layerId) {
+  if (!parcelsVisible) {
+    // Sadece source ekleyip layer ekleme
+    if (!map.getSource(sourceId)) {
+      map.addSource(sourceId, {
+        type: 'geojson',
+        data: './data/parseller.geojson'
+      });
+    }
+    return;
   }
 
-  
-});
+  if (!map.getSource(sourceId)) {
+    map.addSource(sourceId, {
+      type: 'geojson',
+      data: './data/parseller.geojson'
+    });
+  }
+
+  if (!map.getLayer(layerId)) {
+    map.addLayer({
+      id: layerId,
+      type: 'fill',
+      source: sourceId,
+      paint: {
+        'fill-color': '#ffcc66',
+        'fill-opacity': 0.15
+      }
+    });
+  }
+
+  if (!map.getLayer(layerId + '-outline')) {
+    map.addLayer({
+      id: layerId + '-outline',
+      type: 'line',
+      source: sourceId,
+      paint: {
+        'line-color': '#ffcc66',
+        'line-width': 1,
+        'line-opacity': 0.7
+      }
+    });
+  }
+}
+
+// ─────────────────────────────────────────────
+// North indicator (pusula oku)
+// ─────────────────────────────────────────────
+function initNorthIndicator(map) {
+  const arrowEl = document.querySelector('#north-indicator .north-arrow');
+  if (!arrowEl) return;
+
+  const update = () => {
+    const bearing = map.getBearing();
+    arrowEl.style.transform = `rotate(${-bearing}deg)`;
+  };
+
+  map.on('load', update);
+  map.on('rotate', update);
+  map.on('pitch', update);
+  map.on('move', update);
+  update();
+}
+
+// ─────────────────────────────────────────────
+// Basemap + obje/parsel toggle UI
+// ─────────────────────────────────────────────
+function initBasemapAndLayerToggles() {
+  // Sol taban harita
+  document
+    .querySelectorAll('input[name="basemap-left"]')
+    .forEach((radio) => {
+      radio.addEventListener('change', (e) => {
+        if (!e.target.checked) return;
+        const key = e.target.value;
+        const style = BASEMAP_STYLES[key];
+        if (style) {
+          mapOld.setStyle(style);
+        }
+      });
+    });
+
+  // Sağ taban harita
+  document
+    .querySelectorAll('input[name="basemap-right"]')
+    .forEach((radio) => {
+      radio.addEventListener('change', (e) => {
+        if (!e.target.checked) return;
+        const key = e.target.value;
+        const style = BASEMAP_STYLES[key];
+        if (style) {
+          mapNew.setStyle(style);
+        }
+      });
+    });
+
+  // 3D obje görünürlüğü
+  const cbObjects = document.getElementById('toggle-objects');
+  if (cbObjects) {
+    cbObjects.addEventListener('change', (e) => {
+      toggleBuildings(e.target.checked);
+    });
+  }
+
+  // Parsel görünürlüğü
+  const cbParcels = document.getElementById('toggle-parcels');
+  if (cbParcels) {
+    cbParcels.addEventListener('change', (e) => {
+      toggleParcels(e.target.checked);
+    });
+  }
+}
+
+function toggleBuildings(visible) {
+  objectsVisible = visible;
+
+  // Eski katmanları kaldır
+  if (mapOld.getLayer('3d-buildings-old')) {
+    mapOld.removeLayer('3d-buildings-old');
+  }
+  if (mapNew.getLayer('3d-buildings-new')) {
+    mapNew.removeLayer('3d-buildings-new');
+  }
+
+  // Tekrar görünür yapılacaksa yeniden ekle
+  if (visible) {
+    add3DBuildingsOldLayer();
+    add3DBuildingsNewLayer();
+  }
+}
+
+function toggleParcels(visible) {
+  parcelsVisible = visible;
+
+  const pairs = [
+    [mapOld, 'parcels-layer-old'],
+    [mapNew, 'parcels-layer-new']
+  ];
+
+  pairs.forEach(([map, baseId]) => {
+    if (map.getLayer(baseId)) {
+      map.removeLayer(baseId);
+    }
+    if (map.getLayer(baseId + '-outline')) {
+      map.removeLayer(baseId + '-outline');
+    }
+
+    if (visible) {
+      const srcId = baseId.replace('-layer', '-src');
+      addParcelsLayer(map, srcId, baseId);
+    }
+  });
+}
 
 // ─────────────────────────────────────────────
 // UI & Timeline & Panel collapse (yeni map üzerinde)
@@ -218,7 +419,6 @@ function initUI() {
   const infoDiv = document.getElementById('info');
   const btnZoom = document.getElementById('btn-zoom-building');
 
-  // Bina dropdown'ını doldur
   buildingSelect.innerHTML = '';
   BUILDINGS.forEach((b) => {
     const opt = document.createElement('option');
@@ -227,7 +427,6 @@ function initUI() {
     buildingSelect.appendChild(opt);
   });
 
-  // 🔍 Seçili binaya zoom yap
   btnZoom.addEventListener('click', () => {
     const id = buildingSelect.value;
     if (!id) {
@@ -243,19 +442,17 @@ function initUI() {
 
     const [lng, lat] = b.coords;
 
-    // Her iki harita da aynı anda zoom yapsın
     [mapOld, mapNew].forEach((m) => {
       m.flyTo({
         center: { lng, lat },
         zoom: 18,
         pitch: 60,
         bearing: -20,
-        duration: 10000
+        duration: 1000
       });
     });
   });
 
-  // Tek bina butonu
   document
     .getElementById('btn-play-single')
     .addEventListener('click', () => {
@@ -264,15 +461,14 @@ function initUI() {
         infoDiv.innerHTML = 'Lütfen bir bina seç.';
         return;
       }
-      WasteAnimation.playTripsForBuilding(id, (msg) => {
-        infoDiv.innerHTML = msg;
-      });
+      if (window.WasteAnimation) {
+        WasteAnimation.playTripsForBuilding(id, (msg) => {
+          infoDiv.innerHTML = msg;
+        });
+      }
     });
 
-  // Timeline kur
   initTimeline(infoDiv);
-
-  // Panel collapse
   initPanelCollapse();
 }
 
@@ -295,10 +491,9 @@ function initTimeline(infoDiv) {
   const sliderTo = document.getElementById('timeline-to');
   const btnPlayRange = document.getElementById('btn-play-range');
 
-  // Tüm seferlerin tarihlerini topla
   const allDateStrings = [];
   BUILDINGS.forEach((b) => {
-    b.trips.forEach((d) => allDateStrings.push(d));
+    (b.trips || []).forEach((d) => allDateStrings.push(d));
   });
 
   if (!allDateStrings.length) {
@@ -321,7 +516,6 @@ function initTimeline(infoDiv) {
   labelMin.textContent = minStr;
   labelMax.textContent = maxStr;
 
-  // Timeline üzerindeki noktaları çiz
   track.innerHTML = '';
   allDates.forEach((d) => {
     const t =
@@ -335,7 +529,6 @@ function initTimeline(infoDiv) {
     track.appendChild(dot);
   });
 
-  // Slider ayarları (0..1000 normalleştirilmiş)
   sliderFrom.min = 0;
   sliderFrom.max = 1000;
   sliderFrom.value = 0;
@@ -354,7 +547,6 @@ function initTimeline(infoDiv) {
     let v1 = Number(sliderFrom.value);
     let v2 = Number(sliderTo.value);
 
-    // Birbirini geçmesin
     if (v1 > v2) {
       const temp = v1;
       v1 = v2;
@@ -377,14 +569,15 @@ function initTimeline(infoDiv) {
   sliderFrom.addEventListener('input', clampSliders);
   sliderTo.addEventListener('input', clampSliders);
 
-  // İlk label'ı oluştur
   clampSliders();
 
   btnPlayRange.addEventListener('click', () => {
     const { fromStr, toStr } = clampSliders();
 
-    WasteAnimation.playTripsForAllBuildingsInRange(fromStr, toStr, (msg) => {
-      infoDiv.innerHTML = msg;
-    });
+    if (window.WasteAnimation) {
+      WasteAnimation.playTripsForAllBuildingsInRange(fromStr, toStr, (msg) => {
+        infoDiv.innerHTML = msg;
+      });
+    }
   });
 }

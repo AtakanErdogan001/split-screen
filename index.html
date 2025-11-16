@@ -189,6 +189,61 @@
     </div>
   </div>
 
+    <!-- Taban Harita & Katman Paneli -->
+  <div id="basemap-panel" class="panel small-panel">
+    <div class="panel-header">
+      <div>
+        <div class="title">Taban Harita & Katmanlar</div>
+        <div class="subtitle">Sol/sağ kıyas + görünürlük</div>
+      </div>
+    </div>
+
+    <div class="panel-body-inner">
+      <div class="section-title">Taban Harita</div>
+
+      <div class="form-row">
+        <span class="label-inline">Sol (Eski):</span>
+        <label>
+          <input type="radio" name="basemap-left" value="old2020" checked />
+          2020
+        </label>
+        <label>
+          <input type="radio" name="basemap-left" value="current" />
+          Güncel
+        </label>
+      </div>
+
+      <div class="form-row">
+        <span class="label-inline">Sağ (Yeni):</span>
+        <label>
+          <input type="radio" name="basemap-right" value="current" checked />
+          Güncel
+        </label>
+        <label>
+          <input type="radio" name="basemap-right" value="old2020" />
+          2020
+        </label>
+      </div>
+
+      <hr class="divider" />
+
+      <div class="section-title">Katmanlar</div>
+      <div class="filter-row">
+        <label>
+          <input type="checkbox" id="toggle-objects" checked />
+          3D Obje Göster
+        </label>
+      </div>
+      <div class="filter-row">
+        <label>
+          <input type="checkbox" id="toggle-parcels" checked />
+          Parsel Göster
+        </label>
+      </div>
+    </div>
+  </div>
+
+
   <!-- Config (Mapbox token vb.) -->
   <script src="./js/config.js"></script>
 

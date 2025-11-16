@@ -529,3 +529,22 @@ label {
 .filter-building-item:hover {
   background: rgba(255, 204, 102, 0.25);
 }
+
+/* Taban harita & katman paneli */
+#basemap-panel {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 260px;
+  z-index: 5;
+}
+
+#basemap-panel .panel-body-inner {
+  padding: 8px 10px 10px;
+}
+
+.label-inline {
+  font-size: 11px;
+  margin-right: 4px;
+  color: #555;
+}
