@@ -1,0 +1,531 @@
+/* Genel */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+/* Split screen map container */
+
+#comparison-container {
+  position: absolute;
+  inset: 0;
+}
+
+.map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Panel (Atık Simülasyonu) */
+
+.panel {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 8px 10px;
+  border-radius: 10px;
+  max-width: 360px;
+  font-size: 24px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+  pointer-events: auto;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.subtitle {
+  font-size: 16px;
+  opacity: 0.8;
+  margin-bottom: 4px;
+}
+
+.panel-toggle-btn {
+  border: none;
+  border-radius: 999px;
+  width: 22px;
+  height: 22px;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.panel-toggle-btn:hover {
+  background: rgba(255, 0, 0, 0.3);
+}
+
+#panel-body.collapsed {
+  display: none;
+}
+
+.section-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 6px 0 4px 0;
+  color: #ffd5dd;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  margin: 8px 0;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 6px;
+}
+
+label {
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.select,
+.input {
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 4px 6px;
+  font-size: 14px;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  outline: none;
+}
+
+.select:focus,
+.input:focus {
+  border-color: #ff9aa6;
+}
+
+.btn {
+  width: 100%;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  background: #ff4f5e;
+  color: #fff;
+  font-weight: 500;
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+
+.btn:hover {
+  background: #ff6d7a;
+}
+
+.info {
+  font-size: 11px;
+  line-height: 1.4;
+  margin-top: 4px;
+}
+
+/* Timeline */
+
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  opacity: 0.8;
+  margin-bottom: 2px;
+}
+
+.timeline-header .right {
+  text-align: right;
+}
+
+.timeline-bar {
+  position: relative;
+  height: 26px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
+  margin-bottom: 4px;
+  overflow: hidden;
+}
+
+.timeline-dot {
+  position: absolute;
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: #ffcc66;
+  opacity: 0.85;
+}
+
+.timeline-sliders {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 4px;
+}
+
+.timeline-sliders input[type='range'] {
+  width: 100%;
+}
+
+.timeline-selected-label {
+  font-size: 10px;
+  opacity: 0.9;
+  margin-bottom: 4px;
+}
+
+/* ──────────────────────────────── */
+/* Eski / Yeni Bina Bilgi Panelleri */
+/* ──────────────────────────────── */
+
+.building-info-panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 26vw;            /* ekranın ~4'te 1–3'te 1 arası */
+  max-width: 420px;
+  background: rgba(0, 0, 0, 0.88);
+  color: #fff;
+  border-radius: 0;       /* yan sütun gibi olsun */
+  padding: 10px 12px;
+  font-size: 11px;
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.7);
+  z-index: 9;
+  display: flex;
+  flex-direction: column;
+  pointer-events: auto;
+  overflow: hidden;
+}
+
+/* Genel gizleme sınıfı */
+.hidden {
+  display: none !important;
+}
+
+/* ──────────────────────────────── */
+/* Tam ekran Eski / Yeni görsel karşılaştırma overlay'i */
+/* ──────────────────────────────── */
+
+.image-compare-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 100; /* harita ve panellerin üstünde */
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  pointer-events: auto;
+}
+
+.ico-message {
+  font-size: 11px;
+  padding: 4px 10px;
+  opacity: 0.8;
+}
+
+.ico-sides {
+  flex: 1;
+  display: flex;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.image-compare-overlay .ico-side {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.image-compare-overlay .ico-left {
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.image-compare-overlay img {
+  max-width: none;
+  max-height: none;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  cursor: grab;
+  user-select: none;
+}
+
+/* Overlay navigasyon butonları */
+
+.ico-nav {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 4px 10px;
+}
+
+.ico-arrow {
+  border: none;
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 11px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+}
+
+.ico-arrow:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.ico-counter {
+  font-size: 11px;
+  opacity: 0.85;
+}
+
+
+
+
+
+.building-info-panel.side-left {
+  left: 0;
+}
+
+.building-info-panel.side-right {
+  right: 0;
+}
+
+.bi-header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 6px;
+}
+
+.bi-title {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.bi-subtitle {
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+.bi-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow: hidden;
+}
+
+/* Çoklu görsel için grid */
+.bi-image-wrapper {
+  flex: 0 0 auto;
+  max-height: 45%;
+  border-radius: 10px;
+  background: #181818;
+  padding: 4px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: minmax(70px, 1fr);
+  gap: 4px;
+  overflow: hidden;
+}
+
+.bi-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* İstatistikler */
+.bi-stats {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 4px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  margin-top: 2px;
+  
+}
+
+.bi-stat-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3px;
+}
+
+.bi-stat-label {
+  opacity: 0.8;
+  margin-right: 6px;
+  font-size: 18px;
+}
+
+.bi-stat-value {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+
+/* ──────────────────────────────── */
+/* Kuzey göstergesi (pusula) */
+/* ──────────────────────────────── */
+
+#north-indicator {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 15; /* panel ve haritanın üstünde */
+  pointer-events: none; /* tıklamayı engellemesin */
+}
+
+.north-circle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  background: rgba(0, 0, 0, 0.7);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.north-arrow {
+  position: absolute;
+  top: 6px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 11px solid #ffcc66; /* okun rengi */
+  transform-origin: 50% 100%;
+}
+
+.north-label {
+  position: absolute;
+  bottom: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* ──────────────────────────────── */
+/* Katman filtre paneli + grafik */
+/* ──────────────────────────────── */
+
+.panel-section {
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.panel-section h3 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.9;
+  margin-bottom: 6px;
+}
+
+.filter-row {
+  margin-bottom: 4px;
+  font-size: 12px;
+}
+
+.filter-row label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.filter-row input[type='checkbox'] {
+  accent-color: #ffcc66;
+}
+
+/* Mini donut grafik */
+.filter-chart-container {
+  margin-top: 10px;
+  padding: 8px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.filter-chart-header {
+  display: flex;
+  flex-direction: column;
+  font-size: 11px;
+  margin-bottom: 4px;
+}
+
+.filter-chart-header span {
+  font-weight: 600;
+}
+
+.filter-chart-header small {
+  opacity: 0.7;
+}
+
+/* Bina listesi */
+.filter-buildings-list {
+  margin-top: 8px;
+  max-height: 160px;
+  overflow-y: auto;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.18);
+  padding: 4px;
+  transition: max-height 0.2s ease, opacity 0.2s ease;
+}
+
+.filter-buildings-list.collapsed {
+  max-height: 0;
+  opacity: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  overflow: hidden;
+}
+
+.filter-building-item {
+  font-size: 11px;
+  padding: 4px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 3px;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.filter-building-item span.name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.filter-building-item span.units {
+  opacity: 0.8;
+}
+
+.filter-building-item:hover {
+  background: rgba(255, 204, 102, 0.25);
+}

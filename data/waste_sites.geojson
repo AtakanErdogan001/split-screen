@@ -1,0 +1,48 @@
+{
+  "type": "FeatureCollection",
+  "name": "waste_sites_izmir_example",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "EPSG:4326"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "W1",
+        "name": "Konak Atık Sahası",
+        "description": "Konak ve yakın çevresinden gelen atıklar için ana toplama noktası."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [27.145, 38.415]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "W2",
+        "name": "Bayraklı Atık Sahası",
+        "description": "Bayraklı ve kuzey aksından gelen kamyonların kullandığı saha."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [27.154, 38.451]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "W3",
+        "name": "Buca Atık Sahası",
+        "description": "Güney aksı (Buca, Karabağlar) için örnek atık sahası."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [27.17, 38.39]
+      }
+    }
+  ]
+}

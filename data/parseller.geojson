@@ -1,0 +1,1880 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type":"Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.12881,38.40127],
+            [27.12879,38.40115],
+            [27.12877,38.40104],
+            [27.12899,38.40104],
+            [27.12905,38.40125],
+            [27.12881,38.40127]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Halk Konut 11",
+        "İl": "İzmir",
+        "İlçe": "Konak",
+        "Mahalle": "Güneşli",
+        "Ada": "6885",
+        "ParselNo": "18",
+        "Alan": "500",
+        "Pafta": "723 Plan",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+      }
+    },
+  {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.19483,38.45801],
+            [27.19451,38.45795],
+            [27.19413,38.45789],
+            [27.19413,38.4577],
+            [27.19485,38.45782],
+            [27.19483,38.45801]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Cemre Apartmanı",
+        "İl": "İzmir",
+        "İlçe": "Bayraklı",
+        "Mahalle": "Mansuroğlu",
+        "Ada": "3931",
+        "ParselNo": "3",
+        "Alan": "1.325,00",
+        "Pafta": "",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+        }
+      },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.1874,38.45965],
+            [27.18695,38.45946],
+            [27.1872,38.45908],
+            [27.18761,38.45928],
+            [27.18754,38.4594],
+            [27.1875,38.45946],
+            [27.1874,38.45965]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Özkanlar 32",
+        "İl": "İzmir",
+        "İlçe": "Bayraklı",
+        "Mahalle": "Manavkuyu",
+        "Ada": "68",
+        "ParselNo": "119",
+        "Alan": "2.008,00",
+        "Pafta": "15",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+        }
+      },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [26.97086,38.79941],
+            [26.97104,38.79931],
+            [26.97116,38.79942],
+            [26.97104,38.79951],
+            [26.97101,38.79952],
+            [26.97098,38.79954],
+            [26.97095,38.79955],
+            [26.97086,38.79941]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Ayşe Mete ve Hissedarları",
+        "İl": "İzmir",
+        "İlçe": "Aliağa",
+        "Mahalle": "Aliağa",
+        "Ada": "0",
+        "ParselNo": "7088",
+        "Alan": "562,00",
+        "Pafta": "16",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+        }
+      },
+{
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.19483,38.45801],
+            [27.19451,38.45795],
+            [27.19413,38.45789],
+            [27.19413,38.4577],
+            [27.19485,38.45782],
+            [27.19483,38.45801]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Cemre Apartmanı",
+        "İl": "İzmir",
+        "İlçe": "Bayraklı",
+        "Mahalle": "Mansuroğlu",
+        "Ada": "3931",
+        "ParselNo": "3",
+        "Alan": "1.325,00",
+        "Pafta": "",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+        }
+      },
+{
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.1874,38.45965],
+            [27.18695,38.45946],
+            [27.1872,38.45908],
+            [27.18761,38.45928],
+            [27.18754,38.4594],
+            [27.1875,38.45946],
+            [27.1874,38.45965]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Özkanlar 32",
+        "İl": "İzmir",
+        "İlçe": "Bayraklı",
+        "Mahalle": "Manavkuyu",
+        "Ada": "68",
+        "ParselNo": "119",
+        "Alan": "2.008,00",
+        "Pafta": "15",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+        }
+      },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.09297,38.46125],
+            [27.09309,38.4614],
+            [27.09282,38.46154],
+            [27.0927,38.46139],
+            [27.09297,38.46125]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Türkyılmaz Apartmanı",
+        "İl": "İzmir",
+        "İlçe": "Karşıyaka",
+        "Mahalle": "Şemikler",
+        "Ada": "0",
+        "ParselNo": "1960",
+        "Alan": "562,00",
+        "Pafta": "41",
+        "Nitelik": "5 Katlı Betonarme Apartman Ve Arsası",
+        "Mevkii": ""
+        }
+      },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.22503,38.44524],
+            [27.22505,38.44514],
+            [27.22521,38.44516],
+            [27.22519,38.44525],
+            [27.22503,38.44524]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Onur Özkan Apartmanı",
+        "İl": "İzmir",
+        "İlçe": "Bornova",
+        "Mahalle": "Erzene",
+        "Ada": "12016",
+        "ParselNo": "8",
+        "Alan": "151,00",
+        "Pafta": "24 Ö I D",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+        }
+      },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.13844,38.43244],
+            [27.13849,38.43254],
+            [27.13824,38.43269],
+            [27.1381,38.43254],
+            [27.13834,38.43241],
+            [27.13844,38.43244]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Ses Apartmanı",
+        "İl": "İzmir",
+        "İlçe": "Konak",
+        "Mahalle": "Kültür",
+        "Ada": "1195",
+        "ParselNo": "16",
+        "Alan": "574,00",
+        "Pafta": "384",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+        }
+      },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.18076,38.46303],
+            [27.18098,38.46277],
+            [27.18138,38.46278],
+            [27.18121,38.46327],
+            [27.18075,38.46313],
+            [27.18076,38.46303]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Tuna Sitesi.",
+        "İl": "İzmir",
+        "İlçe": "Bayraklı",
+        "Mahalle": "Salhane",
+        "Ada": "25001",
+        "ParselNo": "1",
+        "Alan": "1.972,00",
+        "Pafta": "384",
+        "Nitelik": "Bahçeli İki Bloklu A Blok Otuz Altı Daire B Blok Ondört Daireli Kargir Apartman",
+        "Mevkii": ""
+        }
+      },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [26.27544,38.29058],
+            [26.27518,38.29048],
+            [26.27528,38.29032],
+            [26.27555,38.29042],
+            [26.27544,38.29058]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Çeşme İkiz Villa",
+        "İl": "İzmir",
+        "İlçe": "Çeşme",
+        "Mahalle": "Çiftlik",
+        "Ada": "6265",
+        "ParselNo": "6",
+        "Alan": "512,00",
+        "Pafta": "26Gıv",
+        "Nitelik": "Arsa",
+        "Mevkii": "Ali Ören"
+        }
+      },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.09807,38.39657],
+            [27.09791,38.3967],
+            [27.0979,38.39669],
+            [27.09773,38.39653],
+            [27.09775,38.39652],
+            [27.09787,38.39639],
+            [27.09807,38.39657]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Onur Apartmanı Basın Sitesi.",
+        "İl": "İzmir",
+        "İlçe": "Karabağlar",
+        "Mahalle": "Basın Sitesi",
+        "Ada": "8227",
+        "ParselNo": "3",
+        "Alan": "515,00",
+        "Pafta": "373-184",
+        "Nitelik": "8 Katlı Kargir Mesken",
+        "Mevkii": ""
+        }
+      },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.27,38.43071],
+            [27.27,38.43069],
+            [27.27,38.43063],
+            [27.27,38.4306],
+            [27.27009,38.4306],
+            [27.27009,38.43061],
+            [27.27009,38.43074],
+            [27.27,38.43071]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Sümbül Turan Evi.",
+        "İl": "İzmir",
+        "İlçe": "Bayraklı",
+        "Mahalle": "Salhane",
+        "Ada": "22983",
+        "ParselNo": "2",
+        "Alan": "110,97",
+        "Pafta": "L18-B-06-A-3-C",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+        }
+      },
+      {
+      "type":"Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.19995,38.46163],
+            [27.19988,38.46142],
+            [27.20024,38.46143],
+            [27.2007,38.46143],
+            [27.20109,38.46144],
+            [27.2011,38.46165],
+            [27.19995,38.46163]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "HALK KONUT 24",
+        "İl": "İzmir",
+        "İlçe": "Bayraklı",
+        "Mahalle": "Manavkuyu",
+        "Ada": "3880",
+        "ParselNo": "1",
+        "Alan": "2.342,00",
+        "Pafta": "9",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.19048,38.45685],
+            [27.19103,38.45705],
+            [27.19104,38.45705],
+            [27.191,38.45722],
+            [27.19099,38.45727],
+            [27.19041,38.45715],
+            [27.19042,38.4571],
+            [27.19048,38.45685]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Güler Apt.",
+        "İl": "İzmir",
+        "İlçe": "Bayraklı",
+        "Mahalle": "Mansuroğlu",
+        "Ada": "70",
+        "ParselNo": "387",
+        "Alan": "1.500,00",
+        "Pafta": "11",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.18928,38.45477],
+            [27.18908,38.45516],
+            [27.18878,38.45506],
+            [27.1888,38.45503],
+            [27.1889,38.45486],
+            [27.189,38.45472],
+            [27.18908,38.45469],
+            [27.18928,38.45477]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Aleyna Şekerciler Apt.",
+        "İl": "İzmir",
+        "İlçe": "Bayraklı",
+        "Mahalle": "Mansuroğlu",
+        "Ada": "8473",
+        "ParselNo": "3",
+        "Alan": "1.268,00",
+        "Pafta": "31 J Iıı C",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+      }
+    },
+      {
+      "type":"Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.10198,38.4634],
+            [27.10194,38.46328],
+            [27.10196,38.46326],
+            [27.10229,38.46319],
+            [27.10232,38.46333],
+            [27.10232,38.46333],
+            [27.10198,38.4634]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "MEHLİKA ÖNMAN APT.",
+        "İl": "İzmir",
+        "İlçe": "Karşıyaka",
+        "Mahalle": "Nergiz",
+        "Ada": "25500",
+        "ParselNo": "2",
+        "Alan": "493,00",
+        "Pafta": "25L-3A",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+      }
+    },
+    {
+      "type":"Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.02386,38.39485],
+            [27.02385,38.39526],
+            [27.0238,38.39529],
+            [27.02378,38.3953],
+            [27.02218,38.39544],
+            [27.02215,38.39496],
+            [27.02318,38.39489],
+            [27.02368,38.39475],
+            [27.02383,38.39479],
+            [27.02385,38.39481],
+            [27.02386,38.39485]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "DOKUZ EYLÜL SİTESİ",
+        "İl": "İzmir",
+        "İlçe": "Narlıdere",
+        "Mahalle": "Ilıca",
+        "Ada": "67",
+        "ParselNo": "1",
+        "Alan": "7.977,26",
+        "Pafta": "L18-A-11-A-2-B",
+        "Nitelik": "Arsa",
+        "Mevkii": "Köyaltı"
+      }
+    },
+    {
+      "type":"Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.19658,38.46291],
+            [27.19689,38.46293],
+            [27.19715,38.46295],
+            [27.19718,38.46297],
+            [27.19719,38.46299],
+            [27.19715,38.46333],
+            [27.19712,38.46346],
+            [27.19678,38.46341],
+            [27.19681,38.46327],
+            [27.1964,38.46321],
+            [27.19645,38.46296],
+            [27.19648,38.46293],
+            [27.19652,38.46291],
+            [27.19658,38.46291]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "HALK KONUT 26",
+        "İl": "İzmir",
+        "İlçe": "Bayraklı",
+        "Mahalle": "Manavkuyu",
+        "Ada": "3848",
+        "ParselNo": "7",
+        "Alan": "2.924,00",
+        "Pafta": "31Jııı B",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+      }
+    },
+    {
+      "type":"Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.17659,38.37092],
+            [27.17656,38.37085],
+            [27.17659,38.37084],
+            [27.1767,38.37081],
+            [27.17672,38.37088],
+            [27.17661,38.37091],
+            [27.17659,38.37092]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "YUNUS GÜLER",
+        "İl": "İzmir",
+        "İlçe": "Buca",
+        "Mahalle": "Dumlupınar",
+        "Ada": "7485",
+        "ParselNo": "7",
+        "Alan": "98,00",
+        "Pafta": "21N-3D",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+      }
+    },
+    {
+      "type":"Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.16081,38.38954],
+            [27.16077,38.38938],
+            [27.16093,38.38936],
+            [27.16096,38.38952],
+            [27.16081,38.38954]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "AĞAOĞLU APARTMANI",
+        "İl": "İzmir",
+        "İlçe": "Buca",
+        "Mahalle": "İnönü",
+        "Ada": "7002",
+        "ParselNo": "12",
+        "Alan": "245,00",
+        "Pafta": "64",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+      }
+    },
+    {
+      "type":"Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.18012,38.39856],
+            [27.18019,38.39862],
+            [27.18024,38.39868],
+            [27.18013,38.39875],
+            [27.18009,38.39872],
+            [27.18004,38.39868],
+            [27.18002,38.39866],
+            [27.18001,38.39864],
+            [27.18012,38.39856]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "ÖMER BAYINDIR EVİ",
+        "İl": "İzmir",
+        "İlçe": "Buca",
+        "Mahalle": "Kocatepe",
+        "Ada": "50221",
+        "ParselNo": "9",
+        "Alan": "218,00",
+        "Pafta": "22N-Iııb",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+      }
+    },
+    {
+      "type":"Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.20193,38.46373],
+            [27.20204,38.46347],
+            [27.20263,38.46362],
+            [27.20254,38.46381],
+            [27.20215,38.46377],
+            [27.20193,38.46373]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "HALK KONUT 18",
+        "İl": "İzmir",
+        "İlçe": "Bornova",
+        "Mahalle": "Kazımdirik",
+        "Ada": "3857",
+        "ParselNo": "2",
+        "Alan": "1.438,00",
+        "Pafta": "18",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.18225,38.46408],
+            [27.18238,38.46418],
+            [27.18243,38.46433],
+            [27.18242,38.46443],
+            [27.18145,38.46417],
+            [27.18158,38.46393],
+            [27.18208,38.46403],
+            [27.18225,38.46408]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "GÖKSU A-B",
+        "İl": "İzmir",
+        "İlçe": "Bayraklı",
+        "Mahalle": "Salhane",
+        "Ada": "25003",
+        "ParselNo": "2",
+        "Alan": "2.554,00",
+        "Pafta": "25N2c",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.21651,38.48258],
+            [27.21658,38.48237],
+            [27.21661,38.48238],
+            [27.21667,38.48239],
+            [27.2166,38.48259],
+            [27.21651,38.48258]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "NURULLAH EFE APARTMANI",
+        "İl": "İzmir",
+        "İlçe": "Bornova",
+        "Mahalle": "Ergene",
+        "Ada": "3359",
+        "ParselNo": "10",
+        "Alan": "191,00",
+        "Pafta": "",
+        "Nitelik": "Arsa",
+        "Mevkii": "Döşemealtı"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [26.97984,38.8019],
+            [26.97993,38.80187],
+            [26.98009,38.80183],
+            [26.98013,38.80209],
+            [26.97994,38.80214],
+            [26.97984,38.8019]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "ERDOĞAN OLTULU VE HİSSEDARLARI",
+        "İl": "İzmir",
+        "İlçe": "Bayraklı",
+        "Mahalle": "Salhane",
+        "Ada": "25003",
+        "ParselNo": "2",
+        "Alan": "2.554,00",
+        "Pafta": "25N2c",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.14635,38.43444],
+            [27.14664,38.43434],
+            [27.14668,38.43447],
+            [27.14665,38.43448],
+            [27.14641,38.43455],
+            [27.14635,38.43444]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "SABAHAT APARTMANI",
+        "İl": "İzmir",
+        "İlçe": "Konak",
+        "Mahalle": "Alsancak",
+        "Ada": "1824",
+        "ParselNo": "47",
+        "Alan": "410,50",
+        "Pafta": "219",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.20322,38.46391],
+            [27.20329,38.46375],
+            [27.20338,38.46353],
+            [27.20367,38.4636],
+            [27.20369,38.46363],
+            [27.20352,38.46397],
+            [27.20326,38.46391],
+            [27.20322,38.46391]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "ETEM AĞA",
+        "İl": "İzmir",
+        "İlçe": "Bornova",
+        "Mahalle": "Kazımdirik",
+        "Ada": "3856",
+        "ParselNo": "3",
+        "Alan": "1.250,00",
+        "Pafta": "18/1",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [26.97379,38.8016],
+            [26.97393,38.80173],
+            [26.97387,38.80175],
+            [26.9738,38.80179],
+            [26.97366,38.80167],
+            [26.97379,38.8016]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "FUAT ÖZER VE HİSSEDARLARI",
+        "İl": "İzmir",
+        "İlçe": "Aliağa",
+        "Mahalle": "Aliağa",
+        "Ada": "",
+        "ParselNo": "5945",
+        "Alan": "261,00",
+        "Pafta": "25",
+        "Nitelik": "Arsa",
+        "Mevkii": "Kültür"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.09146,38.46066],
+            [27.09115,38.46084],
+            [27.09104,38.46071],
+            [27.09135,38.46053],
+            [27.09145,38.46065],
+            [27.09146,38.46066]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "ERDİL APARTMAN",
+        "İl": "İzmir",
+        "İlçe": "Karşıyaka",
+        "Mahalle": "Şemikler",
+        "Ada": "",
+        "ParselNo": "2075",
+        "Alan": "578,00",
+        "Pafta": "41",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [26.91728,38.38224],
+            [26.91729,38.38223],
+            [26.91729,38.38222],
+            [26.91732,38.38214],
+            [26.91733,38.38214],
+            [26.91734,38.38211],
+            [26.91745,38.38214],
+            [26.91744,38.38217],
+            [26.91741,38.38223],
+            [26.9174,38.38226],
+            [26.91739,38.38227],
+            [26.91728,38.38224]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "SEVGİ KAYA EVİ",
+        "İl": "İzmir",
+        "İlçe": "Güzelbahçe",
+        "Mahalle": "Maltepe",
+        "Ada": "2737",
+        "ParselNo": "4",
+        "Alan": "154,34",
+        "Pafta": "L17-B-14-A-3-A",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.20853,38.46382],
+            [27.20903,38.46280],
+            [27.20947,38.46291],
+            [27.20911,38.46363],
+            [27.20952,38.46375],
+            [27.20987,38.46386],
+            [27.20981,38.46422],
+            [27.20853,38.46382]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Defne Apartmanı",
+        "İl": "İzmir",
+        "İlçe": "Bornova",
+        "Mahalle": "Ergene",
+        "Ada": "56",
+        "ParselNo": "21",
+        "Alan": "7965.00",
+        "Pafta": "29",
+        "Nitelik": "Arsa",
+        "Mevkii": "Kaan IT House"
+      }
+    },
+    {
+      "type":"Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.19683,38.46257],
+            [27.19687,38.46227],
+            [27.19707,38.46228],
+            [27.19733,38.46239],
+            [27.19732,38.46261],
+            [27.19706,38.46259],
+            [27.19683,38.46257]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Başarı 12",
+        "İl": "İzmir",
+        "İlçe": "Bayraklı",
+        "Mahalle": "Manavkuyu",
+        "Ada": "3863",
+        "ParselNo": "6",
+        "Alan": "1.318,00",
+        "Pafta": "31J Iıı B",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+      }
+    },
+    {
+      "type":"Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.22503,38.44524],
+            [27.22505,38.44514],
+            [27.22521,38.44516],
+            [27.22519,38.44525],
+            [27.22503,38.44524]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Onur Özkan Evi",
+        "İl": "İzmir",
+        "İlçe": "Bornova",
+        "Mahalle": "Erzene",
+        "Ada": "12016",
+        "ParselNo": "8",
+        "Alan": "151,00",
+        "Pafta": "24 Ö I D",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+      }
+    },
+    {
+      "type":"Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.10747,38.45452],
+            [27.10747,38.45451],
+            [27.10749,38.45442],
+            [27.1075,38.45433],
+            [27.10751,38.45428],
+            [27.10751,38.45421],
+            [27.10757,38.45421],
+            [27.10761,38.45452],
+            [27.10747,38.45452]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Ayla Apt.",
+        "İl": "İzmir",
+        "İlçe": "Karşıyaka",
+        "Mahalle": "Aksoy",
+        "Ada": "374",
+        "ParselNo": "157",
+        "Alan": "279,53",
+        "Pafta": "36",
+        "Nitelik": "Kargir Apartman",
+        "Mevkii": ""
+      }
+    },
+    {
+      "type":"Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.04028,38.52142],
+            [27.04029,38.52137],
+            [27.0403,38.52131],
+            [27.04048,38.52133],
+            [27.04046,38.5214],
+            [27.04028,38.52142]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Alagöz Apt.",
+        "İl": "İzmir",
+        "İlçe": "Çiğli",
+        "Mahalle": "Ahmet Efendi",
+        "Ada": "60604",
+        "ParselNo": "2",
+        "Alan": "150,00",
+        "Pafta": "",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+      }
+    },
+    {
+      "type":"Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.10861,38.45736],
+            [27.10876,38.45733],
+            [27.10886,38.45731],
+            [27.10895,38.45757],
+            [27.10871,38.45763],
+            [27.10861,38.45736]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Tonak Apartmanı",
+        "İl": "İzmir",
+        "İlçe": "Karşıyaka",
+        "Mahalle": "Aksoy",
+        "Ada": "9281",
+        "ParselNo": "2",
+        "Alan": "672,00",
+        "Pafta": "37",
+        "Nitelik": "",
+        "Mevkii": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.19034,38.46397],
+            [27.19048,38.46407],
+            [27.19079,38.46425],
+            [27.19047,38.46466],
+            [27.19017,38.46455],
+            [27.19004,38.46448],
+            [27.19022,38.46418],
+            [27.19034,38.46397]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Civan ve Arzum Apartmanları",
+        "İl": "İzmir",
+        "İlçe": "Bayraklı",
+        "Mahalle": "Manavkuyu",
+        "Ada": "3801",
+        "ParselNo": "3",
+        "Alan": "2667.00",
+        "Pafta": "",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.20661,38.47466],
+            [27.20667,38.47455],
+            [27.20670,38.47456],
+            [27.20682,38.47461],
+            [27.20685,38.47464],
+            [27.20686,38.47466],
+            [27.20683,38.47473],
+            [27.20661,38.47466]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Cemil Tokatlı ve Hissedarları",
+        "İl": "İzmir",
+        "İlçe": "Bornova",
+        "Mahalle": "Ergene",
+        "Ada": "3065",
+        "ParselNo": "39",
+        "Alan": "270.00",
+        "Pafta": "29.Ş.Iıı",
+        "Nitelik": "Arsa",
+        "Mevkii": "Döşemealtı"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.19843,38.46292],
+            [27.19848,38.46240],
+            [27.19874,38.46243],
+            [27.19879,38.46245],
+            [27.19883,38.46247],
+            [27.19884,38.46251],
+            [27.19886,38.46255],
+            [27.19885,38.46260],
+            [27.19876,38.46293],
+            [27.19843,38.46292]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Köse",
+        "İl": "İzmir",
+        "İlçe": "Bayraklı",
+        "Mahalle": "Manavkuyu",
+        "Ada": "3862",
+        "ParselNo": "4",
+        "Alan": "1763.00",
+        "Pafta": "18",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.18262,38.46301],
+            [27.18346,38.46326],
+            [27.18339,38.46339],
+            [27.18262,38.46338],
+            [27.18262,38.46301]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Ziya Dağlıer Apartmanı",
+        "İl": "İzmir",
+        "İlçe": "Bayraklı",
+        "Mahalle": "Manavkuyu",
+        "Ada": "8328",
+        "ParselNo": "1",
+        "Alan": "1978.00",
+        "Pafta": "",
+        "Nitelik": "Zemin Dahil Oniki Katlı 1 Adet Betonarme Apartman Ve Arsası",
+        "Mevkii": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.19214, 38.45593],
+            [27.19239, 38.45561],
+            [27.19331, 38.45605],
+            [27.19305, 38.45637],
+            [27.19214, 38.45593]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Halk Konut 20",
+        "İl": "İzmir",
+        "İlçe": "Bayraklı",
+        "Mahalle": "Osmangazi",
+        "Ada": "3990",
+        "ParselNo": "2",
+        "Alan": "4712",
+        "Pafta": "-",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [27.19785,38.46334],[27.1974,38.46331],[27.19744,38.46297],[27.1979,38.463],[27.19785,38.46334]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Barış Sitesi",
+        "İl": "İzmir",
+        "İlçe": "Bayraklı",
+        "Mahalle": "Manavkuyu",
+        "Ada": "3861",
+        "ParselNo": "1",
+        "Alan": "1504.00",
+        "Pafta": "-",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              27.19874,
+              38.46584
+            ],
+            [
+              27.19931,
+              38.46581
+            ],
+            [
+              27.1993,
+              38.46607
+            ],
+            [
+              27.19868,
+              38.4661
+            ],
+            [
+              27.19874,
+              38.46584
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Manavkuyu Mahallesi 3839-ada-2-parsel",
+        "İl": "İzmir",
+        "İlçe": "Bayraklı",
+        "Mahalle": "Manavkuyu",
+        "Ada": "3839",
+        "ParselNo": "2",
+        "Alan": "1.500,00",
+        "Pafta": "18",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              27.1911,
+              38.45505
+            ],
+            [
+              27.19129,
+              38.45511
+            ],
+            [
+              27.19115,
+              38.45535
+            ],
+            [
+              27.19078,
+              38.45519
+            ],
+            [
+              27.19088,
+              38.45494
+            ],
+            [
+              27.1911,
+              38.45505
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Mansuroğlu Mahallesi 70-ada-34-parsel",
+        "İl": "İzmir",
+        "İlçe": "Bayraklı",
+        "Mahalle": "Mansuroğlu",
+        "Ada": "70",
+        "ParselNo": "34",
+        "Alan": "1.078,00",
+        "Pafta": "11",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              27.18028,
+              38.45643
+            ],
+            [
+              27.18053,
+              38.45641
+            ],
+            [
+              27.1808,
+              38.45639
+            ],
+            [
+              27.18081,
+              38.45643
+            ],
+            [
+              27.18073,
+              38.45662
+            ],
+            [
+              27.18034,
+              38.45664
+            ],
+            [
+              27.18031,
+              38.45665
+            ],
+            [
+              27.18028,
+              38.45643
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Salhane Mahallesi 25378-ada-4-parsel",
+        "İl": "İzmir",
+        "İlçe": "Bayraklı",
+        "Mahalle": "Salhane",
+        "Ada": "25378",
+        "ParselNo": "4",
+        "Alan": "1.052,00",
+        "Pafta": "25N3c",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              27.19198,
+              38.4671
+            ],
+            [
+              27.19262,
+              38.46724
+            ],
+            [
+              27.19251,
+              38.46762
+            ],
+            [
+              27.19195,
+              38.46762
+            ],
+            [
+              27.1919,
+              38.46761
+            ],
+            [
+              27.19198,
+              38.4671
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Osmangazi Mahallesi 255-ada-5-parsel",
+        "İl": "İzmir",
+        "İlçe": "Bayraklı",
+        "Mahalle": "Osmangazi",
+        "Ada": "255",
+        "ParselNo": "5",
+        "Alan": "2.816,00",
+        "Pafta": "31 J Iı C",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              27.18877,
+              38.45732
+            ],
+            [
+              27.18887,
+              38.45696
+            ],
+            [
+              27.18928,
+              38.45703
+            ],
+            [
+              27.18918,
+              38.45739
+            ],
+            [
+              27.18877,
+              38.45732
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Mansuroğlu Mahallesi 3959-ada-3-parsel",
+        "İl": "İzmir",
+        "İlçe": "Bayraklı",
+        "Mahalle": "Mansuroğlu",
+        "Ada": "3959",
+        "ParselNo": "3",
+        "Alan": "1.500,00",
+        "Pafta": "11/3",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              27.19669,
+              38.46615
+            ],
+            [
+              27.19675,
+              38.46579
+            ],
+            [
+              27.19681,
+              38.46578
+            ],
+            [
+              27.19693,
+              38.46579
+            ],
+            [
+              27.19696,
+              38.46583
+            ],
+            [
+              27.19701,
+              38.46588
+            ],
+            [
+              27.19712,
+              38.466
+            ],
+            [
+              27.19721,
+              38.46612
+            ],
+            [
+              27.19728,
+              38.46618
+            ],
+            [
+              27.19669,
+              38.46615
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Manavkuyu Mahallesi 3838-ada-2-parsel",
+        "İl": "İzmir",
+        "İlçe": "Bayraklı",
+        "Mahalle": "Manavkuyu",
+        "Ada": "3838",
+        "ParselNo": "2",
+        "Alan": "1.379,00",
+        "Pafta": "",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              27.18526,
+              38.45372
+            ],
+            [
+              27.18526,
+              38.4536
+            ],
+            [
+              27.1853,
+              38.4534
+            ],
+            [
+              27.18612,
+              38.45352
+            ],
+            [
+              27.18604,
+              38.45383
+            ],
+            [
+              27.18597,
+              38.45382
+            ],
+            [
+              27.18586,
+              38.4538
+            ],
+            [
+              27.18574,
+              38.45378
+            ],
+            [
+              27.18563,
+              38.45377
+            ],
+            [
+              27.18552,
+              38.45375
+            ],
+            [
+              27.1854,
+              38.45374
+            ],
+            [
+              27.18526,
+              38.45372
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "HALK KONUT 6 8016/1",
+        "İl": "İzmir",
+        "İlçe": "Bayraklı",
+        "Mahalle": "Mansuroğlu",
+        "Ada": "8016",
+        "ParselNo": "1",
+        "Alan": "2.529,24",
+        "Pafta": "24 N Iı B",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              27.18566,
+              38.45819
+            ],
+            [
+              27.18612,
+              38.45775
+            ],
+            [
+              27.18663,
+              38.45798
+            ],
+            [
+              27.1866,
+              38.45813
+            ],
+            [
+              27.18652,
+              38.45851
+            ],
+            [
+              27.1865,
+              38.4585
+            ],
+            [
+              27.18646,
+              38.45848
+            ],
+            [
+              27.18586,
+              38.45829
+            ],
+            [
+              27.18566,
+              38.45819
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Manavkuyu Mahallesi 3798-ada-1-parsel",
+        "İl": "İzmir",
+        "İlçe": "Bayraklı",
+        "Mahalle": "Manavkuyu",
+        "Ada": "3798",
+        "ParselNo": "1",
+        "Alan": "4.087,00",
+        "Pafta": "25N Iııc",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              27.19081,
+              38.45455
+            ],
+            [
+              27.19094,
+              38.45421
+            ],
+            [
+              27.19141,
+              38.45433
+            ],
+            [
+              27.19122,
+              38.45468
+            ],
+            [
+              27.19081,
+              38.45455
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Mansuroğlu Mahallesi 70-ada-398-parsel",
+        "İl": "İzmir",
+        "İlçe": "Bayraklı",
+        "Mahalle": "Mansuroğlu",
+        "Ada": "70",
+        "ParselNo": "398",
+        "Alan": "1.650,00",
+        "Pafta": "11",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              27.1934,
+              38.46786
+            ],
+            [
+              27.19329,
+              38.46751
+            ],
+            [
+              27.19389,
+              38.46739
+            ],
+            [
+              27.19401,
+              38.46773
+            ],
+            [
+              27.1934,
+              38.46786
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Osmangazi Mahallesi 256-ada-82-parsel",
+        "İl": "İzmir",
+        "İlçe": "Bayraklı",
+        "Mahalle": "Osmangazi",
+        "Ada": "256",
+        "ParselNo": "82",
+        "Alan": "2.141,00",
+        "Pafta": "31",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              27.19078,
+              38.4641
+            ],
+            [
+              27.19059,
+              38.46399
+            ],
+            [
+              27.19053,
+              38.46396
+            ],
+            [
+              27.19049,
+              38.46392
+            ],
+            [
+              27.19064,
+              38.46379
+            ],
+            [
+              27.1907,
+              38.46373
+            ],
+            [
+              27.19082,
+              38.46355
+            ],
+            [
+              27.19086,
+              38.46344
+            ],
+            [
+              27.19088,
+              38.46333
+            ],
+            [
+              27.19084,
+              38.46325
+            ],
+            [
+              27.19081,
+              38.46319
+            ],
+            [
+              27.19075,
+              38.46318
+            ],
+            [
+              27.19077,
+              38.46316
+            ],
+            [
+              27.19079,
+              38.46315
+            ],
+            [
+              27.19092,
+              38.46305
+            ],
+            [
+              27.19138,
+              38.46324
+            ],
+            [
+              27.19078,
+              38.4641
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Manavkuyu Mahallesi 67-ada-29-parsel",
+        "İl": "İzmir",
+        "İlçe": "Bayraklı",
+        "Mahalle": "Manavkuyu",
+        "Ada": "67",
+        "ParselNo": "29",
+        "Alan": "3.515,00",
+        "Pafta": "15/3",
+        "Nitelik": "Arsa",
+        "Mevkii": ""
+      }
+    }
+  ]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

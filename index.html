@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <title>Eski / Yeni 3D Bina Karşılaştırma + Atık Simülasyonu</title>
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+
+  <!-- Mapbox GL JS CSS -->
+  <link
+    href="https://api.mapbox.com/mapbox-gl-js/v3.17.0-beta.1/mapbox-gl.css"
+    rel="stylesheet"
+  />
+
+  <!-- Threebox CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/gh/jscastro76/threebox@v.2.2.2/dist/threebox.css"
+    rel="stylesheet"
+  />
+
+  <!-- Mapbox GL Compare CSS (split screen handle için) -->
+  <link
+    href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.4.0/mapbox-gl-compare.css"
+    rel="stylesheet"
+  />
+
+  <!-- Bizim stil dosyamız -->
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body>
+  <!-- Eski / Yeni map'leri saran container -->
+  <div id="comparison-container">
+    <div id="map-old" class="map"></div>
+    <div id="map-new" class="map"></div>
+  </div>
+
+  <!-- Atık simülasyonu paneli (kapanabilir) - sağdaki (yeni) map üzerinde çalışacak -->
+  <div class="panel" id="waste-panel">
+    <div class="panel-header">
+      <div>
+        <div class="title">3D Atık Toplama Simülasyonu</div>
+        <div class="subtitle">Yeni bina sahnesi üzerinde animasyon</div>
+      </div>
+      <button id="panel-toggle" class="panel-toggle-btn" title="Paneli gizle/göster">
+        −
+      </button>
+    </div>
+
+    <div id="panel-body">
+      <!-- TEK BİNA MODU -->
+      <div class="section-title">Tek Bina → Atık Sahası</div>
+      <div class="form-row">
+        <label for="building-select">Bina seç:</label>
+        <select id="building-select" class="select"></select>
+      </div>
+
+      <button id="btn-zoom-building" class="btn">
+        Seçili binaya zoom yap
+      </button>
+
+      <button id="btn-play-single" class="btn">
+        Bu binanın tüm çıkışlarını göster (0.5 sn arayla)
+      </button>
+
+      <hr class="divider" />
+
+      <!-- ZAMAN ÇİZELGESİ MODU -->
+      <div class="section-title">Zaman Çizelgesi (Tüm Binalar)</div>
+
+      <div class="timeline-header">
+        <span id="timeline-min-label">Başlangıç</span>
+        <span id="timeline-max-label" class="right">Bitiş</span>
+      </div>
+
+      <div class="timeline-bar" id="timeline-track">
+        <!-- JS ile noktalar eklenecek -->
+      </div>
+
+      <div class="timeline-sliders">
+        <input type="range" id="timeline-from" min="0" max="1000" value="0" />
+        <input type="range" id="timeline-to" min="0" max="1000" value="1000" />
+      </div>
+
+      <div id="timeline-selected-label" class="timeline-selected-label">
+        Seçili aralık: —
+      </div>
+
+      <button id="btn-play-range" class="btn">
+        Bu tarih aralığındaki tüm atık gidişlerini göster
+      </button>
+
+      <div id="info" class="info"></div>
+
+      <!-- KATMAN FİLTRELERİ (panel içinde) -->
+      <div class="panel-section">
+        <h3>Katman Filtreleri</h3>
+        <div class="filter-row">
+          <label>
+            <input type="checkbox" id="filter-residential" checked />
+            Konut ağırlıklı
+          </label>
+        </div>
+        <div class="filter-row">
+          <label>
+            <input type="checkbox" id="filter-commercial" checked />
+            Ticari ağırlıklı
+          </label>
+        </div>
+        <div class="filter-row">
+          <label>
+            <input type="checkbox" id="filter-retired" />
+            Emekli yoğun
+          </label>
+        </div>
+        <div class="filter-row">
+          <label>
+            <input type="checkbox" id="filter-disabled" />
+            Engelli malik var
+          </label>
+        </div>
+
+        <!-- ÖZET GRAFİK -->
+        <div class="filter-chart-container">
+          <div class="filter-chart-header">
+            <span>Özet (birim sayısı)</span>
+            <small>Grafiğe tıklayınca liste açılır</small>
+          </div>
+          <canvas id="filter-summary-chart" width="160" height="160"></canvas>
+        </div>
+
+        <!-- Filtreye uyan binaların listesi -->
+        <div id="filter-buildings-list" class="filter-buildings-list collapsed">
+          <!-- JS ile doldurulacak -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Kuzey oku (haritanın üst ortasında) -->
+  <div id="north-indicator">
+    <div class="north-circle">
+      <div class="north-arrow"></div>
+      <div class="north-label">N</div>
+    </div>
+  </div>
+
+  <!-- Eski / Yeni Bina Görsel ve Bilgi Panelleri -->
+  <div id="building-info-old" class="building-info-panel side-left hidden">
+    <div class="bi-header">
+      <div class="bi-title" id="old-building-title">Eski Bina</div>
+      <div class="bi-subtitle" id="old-building-id"></div>
+    </div>
+    <div class="bi-content">
+      <div class="bi-image-wrapper" id="old-images"></div>
+      <div class="bi-stats" id="old-building-stats"></div>
+    </div>
+  </div>
+
+  <div id="building-info-new" class="building-info-panel side-right hidden">
+    <div class="bi-header">
+      <div class="bi-title" id="new-building-title">Yeni Bina</div>
+      <div class="bi-subtitle" id="new-building-id"></div>
+    </div>
+    <div class="bi-content">
+      <div class="bi-image-wrapper" id="new-images"></div>
+      <div class="bi-stats" id="new-building-stats"></div>
+    </div>
+  </div>
+
+  <!-- Tam ekran eski / yeni görsel karşılaştırma overlay'i -->
+  <div id="image-compare-overlay" class="image-compare-overlay hidden">
+    <div class="ico-message">
+      Boş alana tıklayarak kapat · ← / → tuşları veya alttaki oklarla görseller arası geçiş yap
+    </div>
+
+    <div class="ico-sides">
+      <div class="ico-side ico-left">
+        <img id="ico-img-old" src="" alt="Eski büyük görsel" />
+      </div>
+      <div class="ico-side ico-right">
+        <img id="ico-img-new" src="" alt="Yeni büyük görsel" />
+      </div>
+    </div>
+
+    <div class="ico-nav">
+      <button id="ico-prev" class="ico-arrow">← Önceki</button>
+      <div id="ico-counter" class="ico-counter">0 / 0</div>
+      <button id="ico-next" class="ico-arrow">Sonraki →</button>
+    </div>
+  </div>
+
+  <!-- Config (Mapbox token vb.) -->
+  <script src="./js/config.js"></script>
+
+  <!-- Mapbox GL JS -->
+  <script src="https://api.mapbox.com/mapbox-gl-js/v3.17.0-beta.1/mapbox-gl.js"></script>
+
+  <!-- Threebox JS -->
+  <script
+    src="https://cdn.jsdelivr.net/gh/jscastro76/threebox@v.2.2.2/dist/threebox.min.js"
+    type="text/javascript"
+  ></script>
+
+  <!-- Mapbox GL Compare JS -->
+  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.4.0/mapbox-gl-compare.js"></script>
+
+  <!-- Chart.js (mini donut grafik için) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Sıra ÖNEMLİ: önce data, sonra animation, sonra images/filters/app, en son shortcuts -->
+  <script src="./js/data.js"></script>
+  <script src="./js/animation.js"></script>
+  <script src="./js/images.js"></script>
+  <script src="./js/filters.js"></script>
+  <script src="./js/app.js"></script>
+  <script src="./js/shortcuts.js"></script>
+</body>
+</html>
