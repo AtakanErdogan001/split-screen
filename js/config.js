@@ -1,0 +1,1 @@
+window.MAPBOX_TOKEN = 'pk.eyJ1IjoiYXRha2FuZSIsImEiOiJjbWkyNXR6azIxYW1vMmtzZmJoNDd2ZGEwIn0.54uuHthJ3diZUsYAuzwUYg';
