@@ -45,6 +45,17 @@ const STAT_LABELS = {
   tripsEach: 'Atık çıkış tarihleri'
 };
 
+// Numeric değerleri min–max aralığına göre %'ye çevir
+function getNormalizedPercent(field, value) {
+  const ranges = window.STAT_RANGES || {};
+  const range = ranges[field];
+  if (!range) return 0;
+  const { min, max } = range;
+  if (max === min) return 100; // hepsi aynı ise full bar
+  return ((value - min) / (max - min)) * 100;
+}
+
+
 // Bina "seçilmiş" sayılması için tıklama mesafesi (metre)
 const CLICK_DISTANCE_THRESHOLD_METERS = 50;
 
@@ -94,24 +105,55 @@ function renderImages(container, paths, type, buildingId) {
   });
 }
 
-// Tek panel için stat satırlarını HTML olarak oluştur
+// Tek panel için stat satırlarını HTML olarak oluştur (bar destekli)
 function buildStatsHtml(stats) {
   if (!stats) {
     return '<div class="bi-stat-row"><span class="bi-stat-label">Veri yok</span></div>';
   }
 
   const rows = [];
+  const ranges = window.STAT_RANGES || {};
+  const numericKeys = window.NUMERIC_STAT_KEYS || [];
+
   for (const [key, label] of Object.entries(STAT_LABELS)) {
-    const value = stats[key] !== undefined && stats[key] !== null ? stats[key] : '-';
-    rows.push(
-      `<div class="bi-stat-row">
-         <span class="bi-stat-label">${label}</span>
-         <span class="bi-stat-value">${value}</span>
-       </div>`
-    );
+    const rawValue =
+      stats[key] !== undefined && stats[key] !== null ? stats[key] : '-';
+
+    // Eğer bu alan numeric ve global range'i varsa → bar çiz
+    if (
+      numericKeys.includes(key) &&
+      typeof stats[key] === 'number' &&
+      ranges[key]
+    ) {
+      const value = stats[key];
+      const pct = getNormalizedPercent(key, value);
+      const { min, max } = ranges[key];
+
+      rows.push(`
+        <div class="bi-stat-row stat-row">
+          <div class="stat-header">
+            <span class="stat-label">${label}</span>
+            <span class="stat-value">${value}</span>
+          </div>
+          <div class="stat-bar" title="Min: ${min} · Max: ${max}">
+            <div class="stat-bar-fill" style="width: ${pct}%;"></div>
+          </div>
+        </div>
+      `);
+    } else {
+      // String / tarih / trips vs. klasik satır
+      rows.push(`
+        <div class="bi-stat-row">
+          <span class="bi-stat-label">${label}</span>
+          <span class="bi-stat-value">${rawValue}</span>
+        </div>
+      `);
+    }
   }
+
   return rows.join('');
 }
+
 
 // Seçili bina için hem eski hem yeni paneli doldur ve panelleri göster
 function showBuildingPanels(buildingId) {
@@ -147,15 +189,10 @@ function showBuildingPanels(buildingId) {
 
   // Görseller (klasör tabanlı)
   const { old, newer } = getImagePaths(b.id);
-
   renderImages(oldImagesContainer, old, 'old', b.id);
   renderImages(newImagesContainer, newer, 'new', b.id);
 
-  // İstatistikler
-  oldStatsDiv.innerHTML = buildStatsHtml(b.oldStats);
-  newStatsDiv.innerHTML = buildStatsHtml(b.newStats);
-
-    // İstatistikler + atık tarihleri
+  // Atık tarihlerini stringe çevir
   const tripsStr =
     b.trips && b.trips.length ? b.trips.join(', ') : 'Kayıtlı sefer yok';
 
@@ -169,10 +206,11 @@ function showBuildingPanels(buildingId) {
     tripsEach: tripsStr
   };
 
+  // İstatistikleri (bar'lı) çiz
   oldStatsDiv.innerHTML = buildStatsHtml(oldStatsWithTrips);
   newStatsDiv.innerHTML = buildStatsHtml(newStatsWithTrips);
-
 }
+
 
 // Panelleri tamamen gizle
 function hideBuildingPanels() {
