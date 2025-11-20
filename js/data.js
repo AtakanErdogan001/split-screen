@@ -137,25 +137,23 @@ function loadWasteSitesFromGeoJSON(url = './data/waste_sites.geojson') {
     });
 }
 
-// Hangi numeric alanları bar grafikte göstereceğiz?
-// İstersen etiketleri Türkçe burada belirleyebilirsin:
-const NUMERIC_FIELDS = {
-  area: 'Parsel Alanı (m²)',
-  constructionArea: 'İnşaat Alanı (m²)',
-  floors: 'Kat Sayısı',
-  units: 'Bağımsız Birim',
-  residential: 'Konut Birimi',
-  commercial: 'Ticari Birim',
-  owners: 'Malik Sayısı',
-  disabledOwners: 'Engelli Malik',
-  femaleHeads: 'Kadın Hane Reisi',
-  retired: 'Emekli Sayısı'
-};
+// Bu numeric alanlar için min–max hesaplayacağız
+const NUMERIC_STAT_KEYS = [
+  'area',
+  'constructionArea',
+  'floors',
+  'units',
+  'residential',
+  'commercial',
+  'owners',
+  'disabledOwners',
+  'femaleHeads',
+  'retired'
+];
 
-// Her numeric alan için min–max hesaplayalım (eski + yeni tüm binalara göre)
 const STAT_RANGES = {};
 
-Object.keys(NUMERIC_FIELDS).forEach((field) => {
+NUMERIC_STAT_KEYS.forEach((field) => {
   const values = [];
 
   BUILDINGS.forEach((b) => {
@@ -177,8 +175,9 @@ Object.keys(NUMERIC_FIELDS).forEach((field) => {
 });
 
 // Global'e çıkar
-window.NUMERIC_FIELDS = NUMERIC_FIELDS;
+window.NUMERIC_STAT_KEYS = NUMERIC_STAT_KEYS;
 window.STAT_RANGES = STAT_RANGES;
+
 
 
 // Global'e çıkaralım
