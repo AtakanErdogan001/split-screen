@@ -5,7 +5,7 @@
 const BUILDINGS = [
   {
     id: 'B1',
-    name: 'Bina 1',
+    name: 'X Apartmanı',
     coords: [27.18158, 38.46393],
     glbOld: './models/buildings/B1_old.glb', // eski model
     glbNew: './models/buildings/B1_new.glb', // yeni model
@@ -48,7 +48,7 @@ const BUILDINGS = [
   },
   {
     id: 'B2',
-    name: 'Bina 2',
+    name: 'Y Apartmanı',
     coords: [27.1434, 38.4239],
     glbOld: './models/buildings/B2_old.glb',
     glbNew: './models/buildings/B2_new.glb',
@@ -182,6 +182,7 @@ window.STAT_RANGES = STAT_RANGES;
 
 // Global'e çıkaralım
 window.BUILDINGS = BUILDINGS;
+window.NUMERIC_STAT_KEYS = NUMERIC_STAT_KEYS;  // ⭐ BUNU EKLE
 window.WASTE_SITES = WASTE_SITES;
 window.DataStore = {
   BUILDINGS,

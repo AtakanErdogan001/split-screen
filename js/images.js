@@ -55,6 +55,157 @@ function getNormalizedPercent(field, value) {
   return ((value - min) / (max - min)) * 100;
 }
 
+function getBarColor(percent) {
+  if (percent <= 20) return '#00c853';     // yeşil
+  if (percent <= 50) return '#ffeb3b';     // sarı
+  if (percent <= 70) return '#ff9800';     // turuncu
+  return '#d32f2f';                        // kırmızı
+}
+
+let statPieChart = null;
+let statPieCenters = []; // bina koordinatları
+
+function generatePieColors(count) {
+  const base = [
+    '#ffcc66',
+    '#ff8a65',
+    '#4db6ac',
+    '#ba68c8',
+    '#81c784',
+    '#f06292',
+    '#9575cd',
+    '#aed581',
+    '#4fc3f7',
+    '#e57373'
+  ];
+  const colors = [];
+  for (let i = 0; i < count; i++) {
+    colors.push(base[i % base.length]);
+  }
+  return colors;
+}
+
+function openStatPie(field, statsType) {
+  const panel = document.getElementById('stat-pie-panel');
+  const titleEl = document.getElementById('stat-pie-title');
+  const subtitleEl = document.getElementById('stat-pie-subtitle');
+  const canvas = document.getElementById('stat-pie-chart');
+
+  if (!panel || !canvas || !window.Chart) {
+    console.warn('Pie panel veya Chart.js bulunamadı.');
+    return;
+  }
+
+  const ctx = canvas.getContext('2d');
+  const label = STAT_LABELS[field] || field;
+
+  const labels = [];
+  const data = [];
+  statPieCenters = [];
+
+  BUILDINGS.forEach((b) => {
+    const stats =
+      statsType === 'old'
+        ? b.oldStats
+        : statsType === 'new'
+        ? b.newStats
+        : null;
+    if (!stats) return;
+
+    const v = stats[field];
+    if (typeof v === 'number' && !Number.isNaN(v)) {
+      labels.push(b.name || b.id);
+      data.push(v);
+      statPieCenters.push(b.coords);
+    }
+  });
+
+  if (!data.length) {
+    console.warn('Bu alan için numeric veri yok:', field, statsType);
+    return;
+  }
+
+  const colors = generatePieColors(data.length);
+
+  if (statPieChart) {
+    statPieChart.destroy();
+  }
+
+  statPieChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels,
+      datasets: [
+        {
+          data,
+          backgroundColor: colors,
+          borderColor: '#111',
+          borderWidth: 1
+        }
+      ]
+    },
+    options: {
+      animation: {
+        duration: 250
+      },
+      plugins: {
+        legend: {
+          display: true,
+          position: 'bottom',
+          labels: {
+            color: '#fff',
+            font: {
+              size: 11
+            }
+          }
+        },
+        tooltip: {
+          callbacks: {
+            label: function (ctx) {
+              const name = ctx.label || '';
+              const val = ctx.parsed || 0;
+              return `${name}: ${val}`;
+            }
+          }
+        }
+      },
+      onClick: (evt, elements) => {
+        if (!elements || !elements.length) return;
+        const idx = elements[0].index;
+        const center = statPieCenters[idx];
+        if (!center || center.length < 2) return;
+
+        const [lng, lat] = center;
+        const flyOpts = {
+          center: { lng, lat },
+          zoom: 18,
+          pitch: 60,
+          bearing: -20,
+          duration: 1000
+        };
+
+        if (typeof mapOld !== 'undefined') {
+          mapOld.flyTo(flyOpts);
+        }
+        if (typeof mapNew !== 'undefined') {
+          mapNew.flyTo(flyOpts);
+        }
+      }
+    }
+  });
+
+  // Başlık / alt başlık
+  if (titleEl) {
+    const sideText = statsType === 'old' ? 'Eski Binalar' : 'Yeni Binalar';
+    titleEl.textContent = `${label}`;
+    if (subtitleEl) {
+      subtitleEl.textContent = `${sideText} için bina dağılımı`;
+    }
+  }
+
+  panel.classList.remove('hidden');
+}
+
 
 // Bina "seçilmiş" sayılması için tıklama mesafesi (metre)
 const CLICK_DISTANCE_THRESHOLD_METERS = 50;
@@ -106,7 +257,7 @@ function renderImages(container, paths, type, buildingId) {
 }
 
 // Tek panel için stat satırlarını HTML olarak oluştur (bar destekli)
-function buildStatsHtml(stats) {
+function buildStatsHtml(stats, statsType) {
   if (!stats) {
     return '<div class="bi-stat-row"><span class="bi-stat-label">Veri yok</span></div>';
   }
@@ -119,29 +270,40 @@ function buildStatsHtml(stats) {
     const rawValue =
       stats[key] !== undefined && stats[key] !== null ? stats[key] : '-';
 
-    // Eğer bu alan numeric ve global range'i varsa → bar çiz
+    // Eğer bu alan numeric ve global range'i varsa → bar + bar sonunda değer
     if (
       numericKeys.includes(key) &&
       typeof stats[key] === 'number' &&
       ranges[key]
     ) {
       const value = stats[key];
-      const pct = getNormalizedPercent(key, value);
+      const pct = getNormalizedPercent(key, value);   // 0–100
       const { min, max } = ranges[key];
+      const color = getBarColor(pct);
+
+      const rawPos = 100 - pct;
+      const posPct = Math.max(5, Math.min(95, rawPos));
 
       rows.push(`
         <div class="bi-stat-row stat-row">
           <div class="stat-header">
             <span class="stat-label">${label}</span>
-            <span class="stat-value">${value}</span>
           </div>
-          <div class="stat-bar" title="Min: ${min} · Max: ${max}">
-            <div class="stat-bar-fill" style="width: ${pct}%;"></div>
+          <div class="stat-bar"
+               data-stat-field="${key}"
+               data-stats-type="${statsType}"
+               title="Min: ${min} · Max: ${max}">
+            <div class="stat-bar-fill"
+                 style="width:${pct}%; background:${color};"></div>
+            <div class="stat-bar-value-label"
+                 style="left:calc(${posPct}% - 8px);">
+              ${value}
+            </div>
           </div>
         </div>
       `);
     } else {
-      // String / tarih / trips vs. klasik satır
+      // String / tarih / 'Kapıcı dairesi' / trips gibi numeric olmayanlar
       rows.push(`
         <div class="bi-stat-row">
           <span class="bi-stat-label">${label}</span>
@@ -149,10 +311,12 @@ function buildStatsHtml(stats) {
         </div>
       `);
     }
+
   }
 
   return rows.join('');
 }
+
 
 
 // Seçili bina için hem eski hem yeni paneli doldur ve panelleri göster
@@ -207,9 +371,34 @@ function showBuildingPanels(buildingId) {
   };
 
   // İstatistikleri (bar'lı) çiz
-  oldStatsDiv.innerHTML = buildStatsHtml(oldStatsWithTrips);
-  newStatsDiv.innerHTML = buildStatsHtml(newStatsWithTrips);
+  oldStatsDiv.innerHTML = buildStatsHtml(oldStatsWithTrips, 'old');
+  newStatsDiv.innerHTML = buildStatsHtml(newStatsWithTrips, 'new');
+
+  // Bar click handler'larını bağla
+  attachStatBarClickHandlers();
 }
+
+function attachStatBarClickHandlers() {
+  ['old', 'new'].forEach((side) => {
+    const containerId =
+      side === 'old' ? 'old-building-stats' : 'new-building-stats';
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    const bars = container.querySelectorAll('.stat-bar');
+    bars.forEach((bar) => {
+      const field = bar.dataset.statField;
+      const statsType = bar.dataset.statsType;
+      if (!field || !statsType) return;
+
+      bar.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openStatPie(field, statsType); // 👈 pie aç
+      });
+    });
+  });
+}
+
 
 
 // Panelleri tamamen gizle
@@ -417,4 +606,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Full-screen overlay'i hazırla
   initFullImageOverlay();
+
+  const pieCloseBtn = document.getElementById('stat-pie-close');
+  if (pieCloseBtn) {
+    pieCloseBtn.addEventListener('click', () => {
+      const panel = document.getElementById('stat-pie-panel');
+      if (panel) panel.classList.add('hidden');
+    });
+  }
 });
